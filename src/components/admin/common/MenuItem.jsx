@@ -9,7 +9,7 @@ function MenuItem(props) {
 
     return (
         <Link
-            to={props.to}
+            to={props.to || "#"}
             replace
             onClick={props.onClick}
             className={"lg:mx-4 py-8 lg:py-4 lg:px-3 flex justify-start md:justify-start lg:justify-start space-x-4 items-center truncate " + activeClass}

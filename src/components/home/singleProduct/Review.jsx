@@ -173,7 +173,7 @@ function Review({ product, reviews}) {
                             <input type="text" value={username} disabled className="w-full mt-2 p-2 border rounded" />
                         </div>
                         <div className="flex items-center mt-2">
-                            <p className="font-semibold text-sm text-gray-500 text-nowrap">Nội dung đánh giá:</p>
+                            <p className="font-semibold text-sm text-gray-500 text-nowrap pr-2">Nội dung đánh giá: </p>
                             <textarea onChange={(e) => handleChangeReviewForm({ target: { name: "comment", value: e.target.value } })} placeholder="Nội dung đánh giá về sản phẩm..." className="w-full mt-2 p-2 border rounded"></textarea>
                         </div>
                         <button onClick={handleSubmitReview} className="mt-2 p-2 px-4 bg-blue-500 text-white    rounded-full hover:bg-blue-600">

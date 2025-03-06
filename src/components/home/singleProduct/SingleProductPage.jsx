@@ -4,7 +4,7 @@ import ProductDetails from './ProductDetails';
 import { useLocation } from 'react-router-dom';
 
     
-function SingleProduct() {
+function SingleProductPage() {
     const location = useLocation();
     const product = location.state?.product || {};
 
@@ -17,4 +17,4 @@ function SingleProduct() {
     );
 };
 
-export default SingleProduct;
+export default SingleProductPage;

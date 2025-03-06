@@ -114,15 +114,15 @@ function Payment() {
         }
     }
 
-    // const handlePaymentZaloPay = async () => {
-    //     try {
-    //         const response = await PaymentService.paymentOrderZaloPay(createOrderResponse.orderCode);
-    //         console.log("response: {}", response);
-    //     } catch (error) {
-    //         console.error('Error payment ZaloPay:', error);
-    //     }
-    // }
-
+    const handlePaymentZaloPay = async (orderCode) => {
+        try {
+            const response = await PaymentService.paymentOrderZaloPay(orderCode);
+            console.log("response: {}", response);
+            window.location.href = response.content.order_url;
+        } catch (error) {
+            console.error('Error payment ZaloPay:', error);
+        }
+    }
 
     const handleCreateOrder = async () => {
         const orderCodeCreate = await createOrder();
@@ -136,6 +136,9 @@ function Payment() {
         }
         if(selectedMethod === 2) {
            showPaymentConfirmationVNPay(orderCodeCreate);
+        }
+        if(selectedMethod === 3) {
+            showPaymentConfirmationZaloPay(orderCodeCreate);
         }
     }
 
@@ -151,13 +154,17 @@ function Payment() {
         setNote(null);
     }
 
-            // if(selectedMethod === 3) {
-        //     handlePaymentZaloPay();
-        //     setSelectedMethod(null);
-        //     setAddress(null);
-        //     setNote(null);
-        // }
-
+    const showPaymentConfirmationZaloPay = (orderCodeCreate) => {
+        const userConfirmed = window.confirm("Tien hanh thanh toan qua ZaloPay?");
+        if(userConfirmed) {
+            handlePaymentZaloPay(orderCodeCreate);
+        } else {
+            console.log("Thanh toan chua thanh cong");
+        }
+        setSelectedMethod(null);
+        setAddress(null);
+        setNote(null);
+    }
 
     return (
         <div className="grid grid-cols-10 gap-4 pt-5 border-t-2 border-gray-300">

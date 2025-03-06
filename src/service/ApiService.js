@@ -1,3 +1,5 @@
+import { jwtDecode } from "jwt-decode";
+
 
 export default class ApiService {
     static getHeader() {
@@ -21,15 +23,22 @@ export default class ApiService {
     }
 
     static isAdmin() {
-        const role = localStorage.getItem("role");
-
-        return role === "ADMIN";
+        const token = localStorage.getItem("accessToken");
+        if(token) {
+            const decodedToken = jwtDecode(token);
+            return decodedToken.scope === "ADMIN";
+        }
+        return false;
     }
 
     static isUser() {
-        const role = localStorage.getItem("role");
+        const token = localStorage.getItem("accessToken");
+        if(token) {
+            const decodedToken = jwtDecode(token);
+            return decodedToken.scope === "USER";
+        }
 
-        return role === "USER";
+        return false;
     }
 }
 

@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from 'react';
 import CartService from '../service/CartApiService';
 import { removeToken } from '../service/LocalStorageService';
+import ApiService from '../service/ApiService';
 
 export const NavbarContext = createContext();
 
@@ -8,7 +9,9 @@ export const NavbarProvider = ({children}) => {
     const [cartItems, setCartItems] = useState([]);
 
     useEffect(() => {
-        getCartItems();
+        if(ApiService.isUser()) {
+            getCartItems();
+        }
     }, [children]);
 
     const getCartItems = async () => {
@@ -29,7 +32,9 @@ export const NavbarProvider = ({children}) => {
     }
 
     const refreshCart = () => {
-        getCartItems();
+        if(ApiService.isUser()) {
+            getCartItems();
+        }
     }
 
     return (

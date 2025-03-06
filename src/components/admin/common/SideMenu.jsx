@@ -78,7 +78,10 @@ function SideMenu(toggleActiveComponent) {
                     <span className="my-3 lg:my-5 border-b border-gray-900 block"></span>
                 </div>
                 
-                <MenuItem title="Đăng xuất" onClick={handleLogout}>
+                <MenuItem 
+                    to="#"
+                    title="Đăng xuất" 
+                    onClick={handleLogout}>
                     <ArrowRightEndOnRectangleIcon className={itemIconClass} />
                 </MenuItem>
             </ul>

@@ -10,7 +10,7 @@ import Order from "../components/admin/Order/Order";
 import AdminRouter from "./AdminRouter";
 import Customer from "../components/admin/Customer/Customer";
 import LaptopPage from "../components/home/products/laptops/LaptopPage";
-import SingleProduct from "../components/home/singleProduct/SingleProduct";
+import SingleProductPage from "../components/home/singleProduct/SingleProductPage";
 import SignInPage from "../components/home/SignInPage";
 import SignUpPage from "../components/home/SignUpPage";
 import InfoPage from "../components/home/user/InfoPage";
@@ -44,24 +44,21 @@ function AppRouter() {
                 <Route path={ROUTES.PAGE_PC} element={<PcPage />} />
                 <Route path={ROUTES.PAGE_IPAD} element={<IpadPage />} />
                 <Route path={ROUTES.SEARCH_RESULTS} element={<SearchProductPage />} />
-                <Route path={ROUTES.PAGE_SINGLE_PRODUCT} element={<SingleProduct />} />
+                <Route path={ROUTES.PAGE_SINGLE_PRODUCT} element={<SingleProductPage />} />
 
 
                 {/* user route */}
-                <Route path={ROUTES.USER_INFO} element={<InfoPage />} />
-                <Route path={ROUTES.USER_ORDERS} element={<OrdersPage />} />
-                <Route path={ROUTES.USER_ORDERS_PENDING} element={<OrdersPendingPage />} />
-                <Route path={ROUTES.USER_ORDERS_CONFIRMED} element={<OrdersConfirmedPage />} />
-                <Route path={ROUTES.USER_ORDERS_SHIPPING} element={<OrdersShippingPage />} />
-                <Route path={ROUTES.USER_ORDERS_DELIVERED} element={<OrdersDeliveredPage />} />
-                <Route path={ROUTES.USER_ORDERS_CANCELLED} element={<OrdersCancelledPage />} />
-                <Route path={ROUTES.USER_CHANGE_PASSWORD} element={<ChangePasswordPage />} />
-                <Route path={ROUTES.CART} element={<CartPage />} />
-                <Route path={ROUTES.PAYMENT_INFO} element={<PaymentInfoPage />} />
-                <Route path={ROUTES.PAYMENT} element={<PaymentPage />} />
-                {/* <Route path={ROUTES.USER_INFO} element={<UserRouter><InfoPage /></UserRouter>} />
-                <Route path={ROUTES.USER_ORDERS} element={<UserRouter><OrdersPage /></UserRouter>} />
-                <Route path={ROUTES.USER_CHANGE_PASSWORD} element={<UserRouter><ChangePasswordPage /></UserRouter>} /> */}
+                <Route path={ROUTES.USER_INFO} element={<UserRouter> <InfoPage /></UserRouter>} />
+                <Route path={ROUTES.USER_ORDERS} element={<UserRouter> <OrdersPage /></UserRouter>} />
+                <Route path={ROUTES.USER_ORDERS_PENDING} element={<UserRouter> <OrdersPendingPage /> </UserRouter>} />
+                <Route path={ROUTES.USER_ORDERS_CONFIRMED} element={<UserRouter> <OrdersConfirmedPage /> </UserRouter>} />
+                <Route path={ROUTES.USER_ORDERS_SHIPPING} element={<UserRouter> <OrdersShippingPage /> </UserRouter>} />
+                <Route path={ROUTES.USER_ORDERS_DELIVERED} element={<UserRouter> <OrdersDeliveredPage /> </UserRouter>} />
+                <Route path={ROUTES.USER_ORDERS_CANCELLED} element={<UserRouter> <OrdersCancelledPage /> </UserRouter>} />
+                <Route path={ROUTES.USER_CHANGE_PASSWORD} element={<UserRouter> <ChangePasswordPage /> </UserRouter>} />
+                <Route path={ROUTES.CART} element={<UserRouter> <CartPage /> </UserRouter>} />
+                <Route path={ROUTES.PAYMENT_INFO} element={<UserRouter> <PaymentInfoPage /> </UserRouter>} />
+                <Route path={ROUTES.PAYMENT} element={<UserRouter> <PaymentPage /> </UserRouter>} />
 
 
                 {/* admin route */}
@@ -71,7 +68,6 @@ function AppRouter() {
                 <Route path={ROUTES.DASHBOARD_BRAND} element={<AdminRouter><Brand /></AdminRouter>} />
                 <Route path={ROUTES.DASHBOARD_PRODUCT} element={<AdminRouter><Product /></AdminRouter>} />
                 <Route path={ROUTES.DASHBOARD_ORDER} element={<AdminRouter><Order /></AdminRouter>} />
-
 
 
                 <Route path="*" element={<div>Page not found</div>} />

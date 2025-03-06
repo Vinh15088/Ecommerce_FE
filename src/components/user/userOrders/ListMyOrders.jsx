@@ -35,7 +35,7 @@ function ListMyOrders({ myOrders, handleDetailClick }) {
             console.log("orderCode: {}", orderCode);
             const response = await PaymentService.paymentOrderZaloPay(orderCode);
             console.log("response: {}", response);
-            window.location.href = response.content.paymentUrl;
+            window.location.href = response.content.order_url;
         } catch (error) {
             console.error('Error payment ZaloPay:', error);
         }

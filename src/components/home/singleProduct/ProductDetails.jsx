@@ -16,6 +16,11 @@ function ProductDetails({ product }) {
     const [relatedProducts, setRelatedProducts] = useState([]);
     const [reviews, setReviews] = useState([]);
     const [quantity, setQuantity] = useState(1);
+    const [isSpecModalOpen, setIsSpecModalOpen] = useState(false);
+
+    const toggleSpecModal = () => {
+        setIsSpecModalOpen(!isSpecModalOpen);
+    }
 
     const cartItemRequest = {
         productId: product.id,
@@ -33,6 +38,7 @@ function ProductDetails({ product }) {
     }
 
     let averageRating = () => {
+        if (reviews.length === 0) return "0.0";
         return (reviews.reduce((sum, review) => sum + review.rating, 0) / reviews.length).toFixed(1);
     }
 
@@ -154,6 +160,7 @@ function ProductDetails({ product }) {
                         <div className="flex flex-col items-center space-y-1">
                             <button className="bg-white rounded-lg p-2 border hover:border-blue-500"
                                 style={{height: 44, width: 44}}
+                                onClick={toggleSpecModal}
                             >
                                 <ClipboardDocumentCheckIcon className="w-6 h-6 text-blue-500" />
                             </button>
@@ -214,7 +221,7 @@ function ProductDetails({ product }) {
                                 </svg>
                             );
                             })}
-                            <span className="ml-2 font-bold text-blue-500">3.6</span>
+                            <span className="ml-2 font-bold text-blue-500">{averageRating()}</span>
                         </span>
                     </p>
                     <div className="mt-4 bg-gray-200 p-4 rounded-lg border">
@@ -356,6 +363,37 @@ function ProductDetails({ product }) {
                                 <ChevronRightIcon className="w-6 h-6 text-gray-500" />
                             </button>
                         </div>
+                    </div>
+                </div>
+            )}
+
+            {isSpecModalOpen && (
+                <div
+                    className="fixed inset-0 bg-gray-400 bg-opacity-75 flex items-center justify-center"
+                    onClick={toggleSpecModal}
+                >
+                    <div className="bg-white w-2/4 h-3/4 p-8 rounded-lg relative overflow-y-auto"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <h2 className="text-lg font-bold text-blue-500 mb-4">Thông số sản phẩm</h2>
+                        <table className="min-w-full bg-white">
+                            <tbody>
+                                {Object.entries(product.productDetails)
+                                    .filter(([key]) => key !== 'moreDetails')
+                                    .map(([key, value]) => (
+                                    <tr key={key} className="border-b">
+                                        <td className="px-4 py-2 font-bold text-gray-700">{key}</td>
+                                        <td className="px-4 py-2 text-gray-600">{value}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <button
+                            onClick={toggleSpecModal}
+                            className="absolute top-2 right-2 bg-red-500 p-2 text-white rounded-full"
+                        >
+                            Close
+                        </button>
                     </div>
                 </div>
             )}
